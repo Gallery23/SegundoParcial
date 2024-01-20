@@ -1,0 +1,68 @@
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+      <h6 class="m-0 font-weight-bold text-primary">{{ title }}</h6>
+    </div>
+    <div class="card-body">
+      <form [formGroup]="estudiante" (ngSubmit)="grabar()">
+        <div class="mb-2">
+          <label for="Nombres">Nombre</label>
+          <input type="text" class="form-control" formControlName="Nombres" />
+          @if (estudiante.invalid && (estudiante.dirty || estudiante.touched)) {
+          <div class="alert">
+            @if (estudiante.errors?.["required"]) {
+            <div class="ng-invalid">Nombre es requerido</div>
+            }
+          </div>
+          }
+        </div>
+        <div class="mb-2">
+          <label for="Edad">Edad</label>
+          <input type="text" class="form-control" formControlName="Edad" />
+          @if (estudiante.invalid && (estudiante.dirty || estudiante.touched)) {
+          <div class="alert">
+            @if (estudiante.errors?.["required"]) {
+            <div class="ng-invalid"> "La edad es requerida</div>
+            }
+          </div>
+          }
+        </div>
+        <div class="mb-2">
+          <label for="Carrera">Carrera</label>
+          <input type="text" class="form-control" formControlName="Carrera" />
+          @if (estudiante.invalid && (estudiante.dirty || estudiante.touched)) {
+          <div class="alert">
+            @if (estudiante.errors?.["required"]) {
+            <div class="ng-invalid">El correo electrónico es requerido</div>
+            }@else if (estudiante.errors?.["email"]) {
+            <div>No posee el formato de correo electrónico</div>
+            }
+          </div>
+          }
+        </div>
+        <div class="mb-2">
+            <label for="Promedio">Promedio</label>
+            <input type="text" class="form-control" formControlName="Promedio" />
+            @if (estudiante.invalid && (estudiante.dirty || estudiante.touched)) {
+            <div class="alert">
+              @if (estudiante.errors?.["required"]) {
+              <div class="ng-invalid"> "La edad es requerida</div>
+              }
+            </div>
+            }
+          </div>
+        <div class="mb-2">
+          <button
+            type="submit"
+            class="btn btn-primary"
+            [disabled]="!estudiante.valid"
+          >
+            Grabar
+          </button>
+          <button class="btn btn-secondary" routerLink="/dashboard/proveedores">
+            Cancelar
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+  

@@ -1,0 +1,63 @@
+<div class="card shadow mb-6">
+    <div class="card-header py-5">
+      <h6 class="m-0 font-weight-bold text-primary">{{ title }}</h6>
+      <hr />
+      <button class="btn btn-primary" routerLink="/dashboard/nuevo-materia">
+        Nuevo
+      </button>
+    </div>
+    <div class="card-body">
+      <div class="table-responsive">
+        <table
+          class="table table-bordered"
+          id="dataTable"
+          width="100%"
+          cellspacing="0"
+        >
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Nombre_materia</th>
+              <th>ID_estudiante</th>
+              <th>Calificacion</th>
+              <th>Fecha_examen</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (materia of materias; track materia.ID_materia; let i = $index) {
+            <tr>
+              <td>{{ i + 1 }}</td>
+              <td>{{ materia.Nombre_materia }}</td>
+              <td>{{ materia.ID_estudiante }}</td>
+              <td>{{ materia.Calificacion }}</td>
+              <td>{{ materia.Fecha_examen }}</td>
+              <td>
+                <button
+                  type="button"
+                  class="btn btn-outline-warning"
+                  routerLink="/dashboard/editar-materia/{{ materia.ID_materia }}"
+                >
+                  Editar
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-outline-danger"
+                  (click)="eliminar(materia.ID_materia)"
+                >
+                  Eliminar
+                </button>
+              </td>
+            </tr>
+            }@empty {
+            <tr>
+              <td colspan="5">No existen registros</td>
+            </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <button (click)="alerta()">mensaje</button>
+  

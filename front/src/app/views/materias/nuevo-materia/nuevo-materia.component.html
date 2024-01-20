@@ -1,0 +1,75 @@
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+      <h6 class="m-0 font-weight-bold text-primary">{{ title }}</h6>
+    </div>
+    <!--form-->
+    <div class="card-body">
+        <form [formGroup]="materia" (ngSubmit)="grabar()">
+          <div class="mb-2">
+            <label for="Nombre_materia">Nombre Materia</label>
+            <input type="text" class="form-control" formControlName="Nombres" />
+            @if (materia.invalid && (materia.dirty || materia.touched)) {
+            <div class="alert">
+              @if (materia.errors?.["required"]) {
+              <div class="ng-invalid">Nombres es requerido</div>
+            }
+        </div>
+        }
+      </div>
+
+      <div class="card-body">
+        <form [formGroup]="materia" (ngSubmit)="grabar()">
+          <div class="mb-2">
+            <label for="ID_estudiante">Estudiante</label>
+            <select class="form-control" formControlName="ID_estudiante">
+              <option value="0">Seleccione una opción</option>
+              @for (estudiante of ListaEstudiante; track estudiante.ID_estudiante) {
+              <option [value]="estudiante.ID_estudiante">{{ estudiante.Nombre }}</option>
+              }
+            </select>
+          @if (materia.invalid && (materia.dirty || materia.touched)) {
+          <div class="alert alert-danger">
+            @if (materia.errors?.["required"]) {
+            <div class="bg-primary">Id Producto es requerido</div>
+            }
+          </div>
+          }
+        </div>
+        <div class="mb-2">
+          <label for="Calificacion"> Calificacion </label>
+          <input type="text" class="form-control" formControlName="Cantidad" />
+          @if (materia.invalid && (materia.dirty || materia.touched)) {
+          <div class="alert">
+            @if (materia.errors?.["required"]) {
+            <div class="ng-invalid">Calificacion es requerido</div>
+            }
+          </div>
+          }
+        </div>
+        <div class="mb-2">
+          <label for="Fecha_examen"> Fecha_examen</label>
+          <input
+            type="text"
+            class="form-control"
+            formControlName="Fecha_examen"
+          />
+          @if (materia.invalid && (materia.dirty || materia.touched)) {
+          <div class="alert">
+            @if (materia.errors?.["required"]) {
+            <div class="ng-invalid">La fecha de examen es requerido</div>
+            }
+          </div>
+          }
+        </div>
+        <div class="mb-2">
+          <button type="submit" class="btn btn-primary" [disabled]="!materia.valid">
+            Grabar
+          </button>
+          <button class="btn btn-secondary" routerLink="/dashboard/materias">
+            Cancelar
+          </button>
+        </div>
+      </form>
+    </div>
+  
+  
